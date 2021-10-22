@@ -1,0 +1,22 @@
+img {
+  width: 200px;
+  padding-left: 60px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.header {
+  background-color: rgb(2, 61, 2);
+  background-image: url(../assets/bg.png);
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+h1 {
+  color: ghostwhite;
+  padding-top: 50px;
+  padding-left: 20px;
+}
+.input {
+  background-color: rgb(224, 230, 230);
+  width: 100%;
+  padding: 20px;
+}

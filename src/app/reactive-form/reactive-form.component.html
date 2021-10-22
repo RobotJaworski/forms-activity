@@ -1,0 +1,95 @@
+<div>
+  Talent: {{ talents.value }}
+  <br />
+  Position: {{ position.value }}
+  <br />
+  Years: {{ years.value }}
+  <br />
+  Salary : {{ salary.value }}
+  <br />
+  essay: {{ essay.value }}
+  <br />
+</div>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <!-- Talents -->
+  <div class="form-group">
+    <label for="talents" class="form-label">Talents</label>
+    <input
+      formControlName="talents"
+      type="text"
+      class="form-control"
+      id="talents"
+    />
+    <div *ngIf="talents.touched && talents.invalid" class="alert alert-danger">
+      <div *ngIf="talents.errors.required">Talent is Required</div>
+      <div *ngIf="talents.errors.minlength">Invalid Talent</div>
+    </div>
+  </div>
+
+  <!-- Position to apply -->
+  <div class="form-group">
+    <label for="position" class="form-label">Position to apply</label>
+    <input
+      formControlName="position"
+      type="text"
+      class="form-control"
+      id="position"
+    />
+    <div
+      *ngIf="position.touched && position.invalid"
+      class="alert alert-danger"
+    >
+      <div *ngIf="position.errors.required">Position is Required</div>
+      <div *ngIf="position.errors.minlength">Invalid Position</div>
+    </div>
+  </div>
+  <!-- Years of Experience -->
+
+  <div class="form-group">
+    <label for="years" class="form-label">Year(s) of Experience</label>
+    <input
+      formControlName="years"
+      type="number"
+      class="form-control"
+      id="years"
+    />
+    <div *ngIf="years.touched && years.invalid" class="alert alert-danger">
+      <div *ngIf="years.errors.required">Years of Experience is Required</div>
+      <div *ngIf="years.errors.minlength">Invalid Years of Experience</div>
+    </div>
+  </div>
+
+  <!-- salary -->
+  <div class="form-group">
+    <label for="salary" class="form-label">Desired Salary</label>
+    <input
+      formControlName="salary"
+      type="text"
+      class="form-control"
+      id="salary"
+    />
+    <div *ngIf="salary.touched && salary.invalid" class="alert alert-danger">
+      <div *ngIf="salary.errors.required">Desired Salary is Required</div>
+      <div *ngIf="salary.errors.minlength">Invalid Salary</div>
+    </div>
+  </div>
+
+  <!-- essay -->
+  <div class="form-group">
+    <label for="essay" class="form-label">Why we should hire you?</label>
+    <textarea
+      formControlName="essay"
+      class="form-control"
+      id="essay"
+      rows="3"
+    ></textarea>
+    <div *ngIf="essay.touched && essay.invalid" class="alert alert-danger">
+      <div *ngIf="essay.errors.required">An answer is Required</div>
+      <div *ngIf="essay.errors.minlength">Answer too short</div>
+    </div>
+  </div>
+  <br />
+  <button class="btn btn-success" [disabled]="!form.valid">
+    Submit Reactive Form
+  </button>
+</form>

@@ -1,0 +1,107 @@
+<div>
+  Email: {{ email.value }}
+  <br />
+  FullName: {{ fullname.value }}
+  <br />
+  Address: {{ address.value }}
+  <br />
+  Age : {{ age.value }}
+  <br />
+  <div *ngIf="isEncrypted == true">Password: {{ Newpassword }}</div>
+  <br />
+</div>
+
+<form #f="ngForm" (ngSubmit)="submit(f)">
+  <div class="input">
+    <!-- email -->
+    <label for="email" class="form-label">Email</label>
+    <input
+      required
+      ngModel
+      minlength="5"
+      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+      name="email"
+      #email="ngModel"
+      type="email"
+      class="form-control"
+      id="email"
+    />
+    <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+      <div *ngIf="email.errors.required">Email is required</div>
+      <div *ngIf="email.errors.pattern">Invalid Email</div>
+    </div>
+    <!-- fullName -->
+    <label for="fullname" class="form-label">Full name</label>
+    <input
+      required
+      ngModel
+      minlength="3"
+      name="fullname"
+      #fullname="ngModel"
+      type="text"
+      class="form-control"
+      id="fullname"
+    />
+    <div class="alert alert-danger" *ngIf="fullname.touched && !fullname.valid">
+      <div *ngIf="fullname.errors.required">Fullname is required</div>
+    </div>
+    <!-- Address -->
+    <label for="address" class="form-label">Address</label>
+    <input
+      required
+      ngModel
+      minlength="5"
+      name="address"
+      #address="ngModel"
+      type="text"
+      class="form-control"
+      id="address"
+    />
+    <div class="alert alert-danger" *ngIf="address.touched && !address.valid">
+      <div *ngIf="address.errors.required">Address is required</div>
+    </div>
+    <!-- Age -->
+    <label for="age" class="form-label">Age</label>
+    <input
+      required
+      ngModel
+      minlength="2"
+      name="age"
+      #age="ngModel"
+      type="number"
+      min="0"
+      class="form-control"
+      id="age"
+    />
+    <div class="alert alert-danger" *ngIf="age.touched && !age.valid">
+      <div *ngIf="age.errors.required">Age is required</div>
+    </div>
+    <!-- password -->
+    <label for="password" class="form-label">Set Password</label>
+    <input
+      required
+      ngModel
+      minlength="8"
+      pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+      name="password"
+      #password="ngModel"
+      type="password"
+      class="form-control"
+    />
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">
+      <div *ngIf="password.errors.required">Password is required</div>
+      <div *ngIf="password.errors.pattern">
+        Password must contain Minimum eight characters, at least one letter, one
+        number and one special character
+      </div>
+    </div>
+    <br />
+    <button
+      (click)="encrypt(password.value)"
+      class="btn btn-success"
+      [disabled]="!f.valid"
+    >
+      Submit Template Form
+    </button>
+  </div>
+</form>
